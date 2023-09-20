@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .overlay-text {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="image-container">
+        <img id="sourceImage" src="Rakha-bundan-Digi.png" alt="Sample">
+        <div class="overlay-text">Sample Text Overlay</div>
+    </div>
+    
+    <button onclick="downloadImage()">Download Image with Text</button>
+    
+    <script>
+        function downloadImage() {
+            const img = document.getElementById('sourceImage');
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+    
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+    
+            // Add text to the canvas
+            ctx.fillStyle = 'white';
+            ctx.font = '20px Arial';
+            ctx.fillText('Sample Text Overlay', 10, img.height - 20);
+    
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL();
+            link.download = 'image-with-text.png';
+            link.click(); 
+        }
+    </script>
+    
+    
+</body>
+</html>
